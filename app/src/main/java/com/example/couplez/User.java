@@ -1,7 +1,7 @@
 package com.example.couplez;
 
 public class User {
-    public String name, age, email;
+    public String name, age, email, yes, no;
 
     protected User() {
     }

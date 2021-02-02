@@ -3,6 +3,7 @@ package com.example.couplez;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -112,6 +113,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                        finishAffinity();
+                                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "Failed to register! Please Try Again!", Toast.LENGTH_LONG).show();
                                     }

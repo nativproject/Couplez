@@ -9,6 +9,7 @@
     <color name="gray">#e6e6e6</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_no">#e3aea1</color>
+    <color name="action_bar">#FFD0C4</color>
     <color name="color_yes">#A5DF8D</color>
 
 </resources>

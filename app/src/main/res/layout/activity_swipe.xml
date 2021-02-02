@@ -9,12 +9,12 @@
     tools:context=".SwipeActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="120dp">
 
         <ImageView
-            android:layout_width="190dp"
-            android:layout_height="80dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:src="@drawable/logo" />
     </RelativeLayout>
@@ -25,78 +25,82 @@
         android:layout_height="540dp">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:backgroundTint="@color/gray"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="#FBF4F2"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"></androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/user_img_card"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="25dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
 
             <ImageView
                 android:id="@+id/user_img"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:src="@drawable/user_img" />
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_img_card"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Nativ &amp; Yarden"
-            android:textSize="25sp" />
+        <TableLayout
+            android:layout_width="320dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:stretchColumns="1, 2">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_img_card"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="40dp"
-            android:text="28 &amp; 25"
-            android:textSize="20sp" />
+            <TableRow>
 
-        <TextView
-            android:id="@+id/user_info"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_name"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="95dp"
-            android:text="Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna
-            aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
-            android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_below="@id/user_img_card"
+                    android:gravity="center|left"
+                    android:text="Nativ &amp; Yarden"
+                    android:textSize="25sp" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_below="@id/user_img_card"
+                    android:gravity="center|right"
+                    android:text="28 &amp; 25"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_name"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
+                android:textSize="15sp" />
+        </TableLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp">
+        android:layout_height="130dp">
 
         <TableLayout
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="match_parent"
-            android:paddingTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="20dp"
             android:stretchColumns="1, 2">
 
             <TableRow>
@@ -107,6 +111,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:layout_centerInParent="true"
+                    android:layout_marginRight="30dp"
                     android:backgroundTint="@color/color_yes"
                     android:text="Date!"
                     android:textColor="#335034"

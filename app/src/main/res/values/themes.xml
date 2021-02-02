@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Couplez" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Couplez" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -14,6 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Couplez.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/action_bar</item>
     </style>
+
+
+
 </resources>
