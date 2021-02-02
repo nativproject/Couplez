@@ -9,8 +9,8 @@
     tools:context=".SwipeActivity">
 
     <RelativeLayout
-        android:layout_width="250dp"
-        android:layout_height="120dp">
+        android:layout_width="200dp"
+        android:layout_height="100dp">
 
         <ImageView
             android:layout_width="300dp"
@@ -47,8 +47,8 @@
             <ImageView
                 android:id="@+id/user_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/user_img" />
+                android:layout_height="match_parent" />
+            <!--                android:src="@drawable/user_img" -->
         </androidx.cardview.widget.CardView>
 
         <TableLayout
