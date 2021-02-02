@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "63716827429",
+    "project_id": "couplez-bea69",
+    "storage_bucket": "couplez-bea69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63716827429:android:5f42af48b62879a0aa7acc",
+        "android_client_info": {
+          "package_name": "com.example.couplez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63716827429-3hdkfe2uqeq1vj1soovfmnhouhtu9fv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXrNEAwlJMZHKdxvZPNR2Wb-CbFgT-VW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63716827429-3hdkfe2uqeq1vj1soovfmnhouhtu9fv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

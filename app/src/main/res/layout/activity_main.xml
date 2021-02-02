@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ProgressBar
+            android:id="@+id/main_progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            tools:ignore="MissingConstrains" />
+
+        <EditText
+            android:id="@+id/main_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="80dp"
+            android:background="#F1F1F1"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:padding="5dp" />
+
+        <EditText
+            android:id="@+id/main_password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main_email"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:background="#F1F1F1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="5dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="1dp"
+            android:stretchColumns="0, 1">
+
+            <Button
+                android:id="@+id/main_login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:backgroundTint="#FABAA6"
+                android:text="Log In" />
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/main_forgot"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_column="0"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="#FFFFFF"
+                    android:text="Forgot Password?"
+                    android:textAllCaps="false"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/main_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_column="1"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="#A6BEFA"
+                    android:text="Register" />
+            </TableRow>
+
+
+        </TableLayout>
+    </RelativeLayout>
+
+</LinearLayout>
