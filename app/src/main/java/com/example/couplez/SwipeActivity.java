@@ -39,7 +39,6 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     private StorageReference images;
     private String current_uid;
     private Stack<String> cards = new Stack<String>();
-    private ArrayAdapter arr_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +46,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_swipe);
         find_views();
         init_views();
+
         m_auth = FirebaseAuth.getInstance();
         current_uid = m_auth.getCurrentUser().getUid();
 
@@ -85,13 +85,13 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
 
         });
     }
 
     public void display_couple(String card) {
+        Log.d(TAG, "display_couple: " + card);
         images = FirebaseStorage.getInstance().getReference(card + ".jpg");
         final long ONE_MEGABYTE = 1024 * 1024;
         images.getBytes(ONE_MEGABYTE)
@@ -104,6 +104,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
+
             }
         });
     }

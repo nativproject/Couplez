@@ -1,122 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".RegisterActivity">
+    android:fillViewport="true">
 
-    <RelativeLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".RegisterActivity">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:src="@drawable/logo" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="170dp">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="100dp"
-            app:cardElevation="0dp">
+            android:layout_height="200dp">
 
             <ImageView
-                android:id="@+id/profile_img"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
-                android:src="@drawable/profile" />
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+                android:src="@drawable/logo" />
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp">
 
-        <ProgressBar
-            android:id="@+id/register_progress_bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            tools:ignore="MissingConstrains" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="0dp">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="#F1F1F1"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            android:padding="5dp" />
+                <ImageView
+                    android:id="@+id/profile_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/profile" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/email"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="#F1F1F1"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="5dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
 
-        <EditText
-            android:id="@+id/age"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/password"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="#F1F1F1"
-            android:hint="Age"
-            android:inputType="number"
-            android:padding="5dp" />
+            <ProgressBar
+                android:id="@+id/register_progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                tools:ignore="MissingConstrains" />
 
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/age"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="#F1F1F1"
-            android:hint="Username"
-            android:inputType="text"
-            android:padding="5dp" />
+            <TableLayout
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:stretchColumns="1, 2">
 
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="#F1F1F1"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:padding="5dp" />
 
-    </RelativeLayout>
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="#F1F1F1"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="5dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
+                <TableRow android:layout_marginTop="20dp">
 
-        <Button
-            android:id="@+id/register"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:backgroundTint="#FBAD4E"
-            android:text="Register" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:paddingVertical="5dp"
+                        android:text="Your Age"
+                        android:textColor="@color/color_no"
+                        android:textSize="18sp">></TextView>
 
-    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:paddingVertical="5dp"
+                        android:text="Partner's Age"
+                        android:textColor="@color/color_no"
+                        android:textSize="18sp"></TextView>
+                </TableRow>
 
-</LinearLayout>
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/your_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_centerHorizontal="true"
+                        android:background="#F1F1F1"
+                        android:hint="Your age"
+                        android:inputType="number"
+                        android:padding="5dp" />
+
+                    <EditText
+                        android:id="@+id/partner_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:background="#F1F1F1"
+                        android:hint="Partner's age"
+                        android:inputType="number"
+                        android:padding="5dp" />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:paddingVertical="5dp"
+                        android:text="Your Name"
+                        android:textColor="@color/color_no"
+                        android:textSize="18sp">></TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:paddingVertical="5dp"
+                        android:text="Partner's Name"
+                        android:textColor="@color/color_no"
+                        android:textSize="18sp"></TextView>
+                </TableRow>
+
+                <TableRow>
+
+                    <EditText
+                        android:id="@+id/your_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_centerHorizontal="true"
+                        android:background="#F1F1F1"
+                        android:hint="Your name"
+                        android:inputType="text"
+                        android:padding="5dp" />
+
+                    <EditText
+                        android:id="@+id/partner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginLeft="15dp"
+                        android:background="#F1F1F1"
+                        android:hint="Partner's name"
+                        android:inputType="text"
+                        android:padding="5dp" />
+                </TableRow>
+
+            </TableLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true"
+                android:backgroundTint="#FBAD4E"
+                android:text="Register" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

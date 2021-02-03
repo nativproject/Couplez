@@ -47,8 +47,9 @@
             <ImageView
                 android:id="@+id/user_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <!--                android:src="@drawable/user_img" -->
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="-60dp"
+                android:layout_marginVertical="-60dp" />
         </androidx.cardview.widget.CardView>
 
         <TableLayout
