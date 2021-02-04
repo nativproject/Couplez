@@ -2,16 +2,20 @@ package com.example.couplez;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ImageView profile_img;
     private StorageReference storage;
     private Uri image_uri;
-    private Bitmap bitmap, image_bp;
+    private Bitmap image_bp;
     private HashMap<String, String> ages = new HashMap<>(), names = new HashMap<>();
     private String email, password, profile_image, info;
     private boolean img_uploaded = false;
@@ -104,11 +108,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             if (resultCode == Activity.RESULT_OK) {
                 image_uri = data.getData();
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    int newHeight = bitmap.getHeight() / 3, newWidth = bitmap.getWidth() / 3;
-                    image_bp = get_resized_bitmap(bitmap, newHeight, newWidth);
-                    image_uri = get_image_uri(this, image_bp);
-                    profile_img.setImageURI(image_uri);
+                    image_bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                    image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 4, image_bp.getHeight() / 4, false);
+                    profile_img.setImageBitmap(image_bp);
                 } catch (Exception e) {
                     Toast.makeText(RegisterActivity.this, "Failed!", Toast.LENGTH_LONG).show();
                 }
@@ -116,34 +118,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public Bitmap get_resized_bitmap(Bitmap bm, int newHeight, int newWidth) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
+    public byte[] bitmap_to_bytes() {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        // create a matrix for the manipulation
-        Matrix matrix = new Matrix();
+        image_bp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
-        // resize the bit map
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // recreate the new Bitmap
-        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-
-        return resizedBitmap;
-    }
-
-    public Uri get_image_uri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+//        bitmap.recycle();
     }
 
     public void upload_img_to_firebase(Uri image_uri, String uid) {
+        byte[] img = bitmap_to_bytes();
         StorageReference file_ref = storage.child("images").child(uid + ".jpg");
-        file_ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        file_ref.putBytes(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(RegisterActivity.this, "Image uploaded successfully!", Toast.LENGTH_LONG).show();
@@ -156,9 +144,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    public String bitmap_to_str(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
     public void register_user() {
         email = edit_email.getText().toString().trim();
-        profile_image = image_uri.toString();
+        profile_image = bitmap_to_str(image_bp);
         password = edit_password.getText().toString().trim();
         ages.put("your_age", edit_your_age.getText().toString().trim());
         ages.put("partner_age", edit_partner_age.getText().toString().trim());

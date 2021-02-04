@@ -3,8 +3,13 @@ package com.example.couplez;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
 import java.util.Stack;
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +46,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_swipe);
         find_views();
         init_views();
-
+        Log.d(TAG, "onCreate");
         m_auth = FirebaseAuth.getInstance();
         current_uid = m_auth.getCurrentUser().getUid();
         progress_bar.bringToFront();
@@ -51,17 +57,33 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
                 finished = true;
                 init_couples(users_info.pop());
                 progress_bar.setVisibility(View.GONE);
+                Log.d(TAG, "onCallback: " + users_ids.toString());
             }
         });
+
     }
 
     public void init_couples(User first_user) {
-        user_image.setImageURI(Uri.parse(first_user.profile_image));
+        Bitmap decode = str_to_bitmap(first_user.profile_image);
+        user_image.setImageBitmap(decode);
+
+        Log.d(TAG, "init_couples1: " + first_user.profile_image);
+
         user_name.setText(first_user.your_name + " & " + first_user.partner_name);
         user_age.setText(first_user.your_age + " & " + first_user.partner_age);
         user_about.setText(first_user.about);
     }
 
+    public Bitmap str_to_bitmap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
 
     public void find_views() {
         user_image = (ImageView) findViewById(R.id.user_img);
@@ -136,7 +158,6 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
 
     public void show_empty_screen() {
         user_image.setImageDrawable(getResources().getDrawable(R.drawable.sorry));
