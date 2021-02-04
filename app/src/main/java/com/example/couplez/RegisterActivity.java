@@ -32,7 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,8 +44,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private StorageReference storage;
     private Uri image_uri;
     private Bitmap bitmap, image_bp;
-    private ArrayList<String> ages = new ArrayList<>(), names = new ArrayList<>();
-    private String email, password;
+    private HashMap<String, String> ages = new HashMap<>(), names = new HashMap<>();
+    private String email, password, profile_image, info;
     private boolean img_uploaded = false;
 
     @Override
@@ -142,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void upload_img_to_firebase(Uri image_uri, String uid) {
-        StorageReference file_ref = storage.child(uid + ".jpg");
+        StorageReference file_ref = storage.child("images").child(uid + ".jpg");
         file_ref.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -158,13 +158,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void register_user() {
         email = edit_email.getText().toString().trim();
+        profile_image = image_uri.toString();
         password = edit_password.getText().toString().trim();
-        ages.add(edit_your_age.getText().toString().trim());
-        ages.add(edit_partner_age.getText().toString().trim());
-        names.add(edit_your_name.getText().toString().trim());
-        names.add(edit_partner_name.getText().toString().trim());
+        ages.put("your_age", edit_your_age.getText().toString().trim());
+        ages.put("partner_age", edit_partner_age.getText().toString().trim());
+        names.put("your_name", edit_your_name.getText().toString().trim());
+        names.put("partner_name", edit_partner_name.getText().toString().trim());
+        info = "Hiking, Traveling, Restaurant";
 
-        if (names.get(0).isEmpty() || names.get(1).isEmpty()) {
+        if (names.get("your_name").isEmpty() || names.get("partner_name").isEmpty()) {
             edit_your_name.setError("Full name is required!");
             edit_your_name.requestFocus();
             return;
@@ -180,7 +182,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             edit_email.requestFocus();
             return;
         }
-        if (ages.get(0).isEmpty() || Integer.parseInt(ages.get(0)) < 18 || ages.get(1).isEmpty() || Integer.parseInt(ages.get(1)) < 18) {
+        if (ages.get("your_age").isEmpty() || Integer.parseInt(ages.get("your_age")) < 18 || ages.get("partner_age").isEmpty() || Integer.parseInt(ages.get("partner_age")) < 18) {
             edit_your_age.setError("Please provide a valid age!");
             edit_your_age.requestFocus();
             return;
@@ -208,7 +210,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(names, ages, email);
+                            User user = new User(names, ages, email, profile_image, info);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

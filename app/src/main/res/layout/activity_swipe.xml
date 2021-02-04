@@ -23,6 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="540dp">
 
+        <ProgressBar
+            android:id="@+id/swipe_progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:visibility="visible"
+            tools:ignore="MissingConstrains" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -71,6 +81,7 @@
                     android:textSize="25sp" />
 
                 <TextView
+                    android:id="@+id/user_age"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_column="2"
@@ -81,7 +92,7 @@
             </TableRow>
 
             <TextView
-                android:id="@+id/user_info"
+                android:id="@+id/user_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_name"
