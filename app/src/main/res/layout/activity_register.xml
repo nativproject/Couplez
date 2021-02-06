@@ -9,7 +9,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:configChanges="orientation"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
         tools:context=".RegisterActivity">
 
@@ -50,7 +51,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="320dp">
 
             <ProgressBar
                 android:id="@+id/register_progress_bar"
@@ -189,16 +190,23 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="180dp">
 
-            <Button
-                android:id="@+id/register"
+            <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_centerInParent="true"
-                android:backgroundTint="#FBAD4E"
-                android:text="Register" />
+                app:cardCornerRadius="50dp"
+                app:cardElevation="0dp">
 
+                <Button
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="#FBAD4E"
+                    android:text="Register" />
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

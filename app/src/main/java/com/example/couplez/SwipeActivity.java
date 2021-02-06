@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,9 +37,10 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     private DatabaseReference all_users;
     private FirebaseAuth m_auth;
     private String current_uid, TAG = "TAG";
-    private Stack<String> users_ids = new Stack<>();
-    private Stack<User> users_info = new Stack<>();
-    private boolean finished = false;
+    public Stack<String> users_ids = new Stack<String>();
+    public Stack<User> users_info = new Stack<User>();
+    public User current_user = null;
+    public boolean finished = false;
 
 
     @Override
@@ -51,27 +54,12 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         current_uid = m_auth.getCurrentUser().getUid();
         progress_bar.bringToFront();
 
-        read_data(current_uid, new firebase_callback() {
-            @Override
-            public void onCallback() {
-                finished = true;
-                init_couples(users_info.pop());
-                progress_bar.setVisibility(View.GONE);
-                Log.d(TAG, "onCallback: " + users_ids.toString());
-            }
+        read_data(current_uid, () -> {
+            finished = true;
+            current_user = users_info.pop();
+            init_couples(current_user);
+            progress_bar.setVisibility(View.GONE);
         });
-
-    }
-
-    public void init_couples(User first_user) {
-        Bitmap decode = str_to_bitmap(first_user.profile_image);
-        user_image.setImageBitmap(decode);
-
-        Log.d(TAG, "init_couples1: " + first_user.profile_image);
-
-        user_name.setText(first_user.your_name + " & " + first_user.partner_name);
-        user_age.setText(first_user.your_age + " & " + first_user.partner_age);
-        user_about.setText(first_user.about);
     }
 
     public Bitmap str_to_bitmap(String encodedString) {
@@ -101,6 +89,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void read_data(String current_uid, firebase_callback callback) {
+        Log.d(TAG, "read_data:                              .");
         all_users = FirebaseDatabase.getInstance().getReference().child("Users");
         all_users.addValueEventListener(new ValueEventListener() {
             @Override
@@ -134,22 +123,44 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         void onCallback();
     }
 
+    public void init_couples(User current_user) {
+        print_stack(users_info);
+        Bitmap decode = str_to_bitmap(current_user.profile_image);
+        user_image.setImageBitmap(decode);
+        user_name.setText(current_user.your_name + " & " + current_user.partner_name);
+        user_age.setText(current_user.your_age + " & " + current_user.partner_age);
+        user_about.setText(current_user.about);
+    }
+
     // TODO: 14/12/2020 update database with the current user decision
     public void user_selection(String decision, String current_uid) {
         Log.d(TAG, "user_selection: " + decision);
-        if (!users_info.isEmpty()) {
-            update_db(decision, users_ids.pop(), current_uid);
-            init_couples(users_info.pop());
-        } else
-            show_empty_screen(); // TODO: 04/02/2021 Show screen that indicates that no users are left to show
+        try {
+            update_db(decision, users_ids.pop(), current_uid, () -> {
+                if (!users_info.empty()) {
+                    current_user = users_info.pop();
+                    init_couples(current_user);
+                } else
+                    show_empty_screen(); // TODO: 04/02/2021 Show screen that indicates that no users are left to show
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void update_db(String decision, String user_id, String current_uid) {
+    private void print_stack(Stack<User> users) {
+        for (User user : users) {
+            Log.d(TAG, "print_stack: " + user.toString());
+        }
+    }
+
+    public void update_db(String decision, String user_id, String current_uid, firebase_callback callback) {
         all_users = FirebaseDatabase.getInstance().getReference().child("Users");
         all_users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 all_users.child(user_id).child("decision").child(decision).child(current_uid).setValue(true);
+                callback.onCallback();
             }
 
             @Override
@@ -161,6 +172,8 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
     public void show_empty_screen() {
         user_image.setImageDrawable(getResources().getDrawable(R.drawable.sorry));
+        btn_no.setClickable(false);
+        btn_yes.setClickable(false);
     }
 
     @Override
@@ -178,6 +191,4 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
-
-
 }

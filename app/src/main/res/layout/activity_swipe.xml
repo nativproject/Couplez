@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_gravity="center_vertical"
+    android:configChanges="orientation"
     android:orientation="vertical"
     tools:context=".SwipeActivity">
 
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="100dp">
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:src="@drawable/logo" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="540dp">
+        android:layout_height="520dp">
 
         <ProgressBar
             android:id="@+id/swipe_progress_bar"
@@ -38,15 +40,15 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:backgroundTint="#FBF4F2"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"></androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/user_img_card"
-            android:layout_width="320dp"
-            android:layout_height="320dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
@@ -57,8 +59,8 @@
                 android:id="@+id/user_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="-60dp"
-                android:layout_marginVertical="-60dp" />
+                android:layout_marginHorizontal="-40dp"
+                android:layout_marginVertical="-50dp" />
         </androidx.cardview.widget.CardView>
 
         <TableLayout
@@ -77,7 +79,6 @@
                     android:layout_column="1"
                     android:layout_below="@id/user_img_card"
                     android:gravity="center|left"
-                    android:text="Nativ &amp; Yarden"
                     android:textSize="25sp" />
 
                 <TextView
@@ -87,7 +88,6 @@
                     android:layout_column="2"
                     android:layout_below="@id/user_img_card"
                     android:gravity="center|right"
-                    android:text="28 &amp; 25"
                     android:textSize="20sp" />
             </TableRow>
 
@@ -98,45 +98,58 @@
                 android:layout_below="@+id/user_name"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
                 android:textSize="15sp" />
         </TableLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="200dp">
 
         <TableLayout
             android:layout_width="320dp"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
-            android:paddingTop="20dp"
+            android:layout_marginTop="50dp"
             android:stretchColumns="1, 2">
 
             <TableRow>
 
-                <Button
-                    android:id="@+id/btn_yes"
+                <androidx.cardview.widget.CardView
                     android:layout_width="10dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:layout_column="1"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="30dp"
-                    android:backgroundTint="@color/color_yes"
-                    android:text="Date!"
-                    android:textColor="#335034"
-                    android:textSize="20sp" />
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp">
 
-                <Button
-                    android:id="@+id/btn_no"
+                    <Button
+                        android:id="@+id/btn_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/color_yes"
+                        android:text="Date!"
+                        android:textColor="#335034"
+                        android:textSize="20sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="10dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:layout_column="2"
-                    android:backgroundTint="@color/color_no"
-                    android:text="Wait..."
-                    android:textColor="#672424"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="20dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp">
+
+                    <Button
+                        android:id="@+id/btn_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/color_no"
+                        android:text="Wait..."
+                        android:textColor="#672424"
+                        android:textSize="20sp" />
+                </androidx.cardview.widget.CardView>
             </TableRow>
 
         </TableLayout>

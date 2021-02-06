@@ -120,12 +120,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public byte[] bitmap_to_bytes() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
         image_bp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-
         byte[] byteArray = stream.toByteArray();
         return byteArray;
-//        bitmap.recycle();
     }
 
     public void upload_img_to_firebase(Uri image_uri, String uid) {
@@ -154,7 +151,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void register_user() {
         email = edit_email.getText().toString().trim();
-        profile_image = bitmap_to_str(image_bp);
         password = edit_password.getText().toString().trim();
         ages.put("your_age", edit_your_age.getText().toString().trim());
         ages.put("partner_age", edit_partner_age.getText().toString().trim());
@@ -200,6 +196,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        profile_image = bitmap_to_str(image_bp);
         progress_bar.setVisibility(View.VISIBLE);
         m_auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
