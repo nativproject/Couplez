@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
@@ -28,11 +28,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="170dp">
+            android:layout_height="120dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="160dp"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
@@ -45,13 +45,15 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="-60dp"
                     android:layout_marginVertical="-60dp"
+                    android:rotation="180"
                     android:src="@drawable/profile" />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="320dp">
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="50dp">
 
             <ProgressBar
                 android:id="@+id/register_progress_bar"
@@ -62,151 +64,148 @@
                 android:visibility="gone"
                 tools:ignore="MissingConstrains" />
 
-            <TableLayout
-                android:layout_width="320dp"
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:stretchColumns="1, 2">
+                android:layout_marginTop="10dp"
+                android:background="@drawable/blank_circle"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
 
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:background="#F1F1F1"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress"
-                    android:padding="5dp" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/blank_circle"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+        </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/email"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:background="#F1F1F1"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="5dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="50dp">
 
-                <TableRow android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/your_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/blank_circle"
+                android:hint="Your age"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:paddingVertical="5dp"
-                        android:text="Your Age"
-                        android:textColor="@color/color_no"
-                        android:textSize="18sp">></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:background="#ffffff"
+                android:text="Your Age"
+                android:textColor="#9A6B63" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:layout_marginLeft="15dp"
-                        android:paddingVertical="5dp"
-                        android:text="Partner's Age"
-                        android:textColor="@color/color_no"
-                        android:textSize="18sp"></TextView>
-                </TableRow>
+            <EditText
+                android:id="@+id/partner_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@+id/your_age"
+                android:background="@drawable/blank_circle"
+                android:hint="Partner's age"
+                android:inputType="number"
 
-                <TableRow>
+                android:padding="10dp"
+                android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/your_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_centerHorizontal="true"
-                        android:background="#F1F1F1"
-                        android:hint="Your age"
-                        android:inputType="number"
-                        android:padding="5dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="7dp"
+                android:layout_toRightOf="@+id/your_age"
+                android:background="#ffffff"
+                android:text="Partner's Age"
+                android:textColor="#9A6B63" />
+        </RelativeLayout>
 
-                    <EditText
-                        android:id="@+id/partner_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:layout_marginLeft="15dp"
-                        android:background="#F1F1F1"
-                        android:hint="Partner's age"
-                        android:inputType="number"
-                        android:padding="5dp" />
-                </TableRow>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="50dp">
 
-                <TableRow android:layout_marginTop="30dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:paddingVertical="5dp"
-                        android:text="Your Name"
-                        android:textColor="@color/color_no"
-                        android:textSize="18sp">></TextView>
+            <EditText
+                android:id="@+id/your_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/blank_circle"
+                android:hint="Your name"
+                android:inputType="text"
+                android:padding="10dp"
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:layout_marginLeft="15dp"
-                        android:paddingVertical="5dp"
-                        android:text="Partner's Name"
-                        android:textColor="@color/color_no"
-                        android:textSize="18sp"></TextView>
-                </TableRow>
+                android:textSize="14sp" />
 
-                <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:background="#ffffff"
+                android:text="Your Name"
+                android:textColor="#9A6B63" />
 
-                    <EditText
-                        android:id="@+id/your_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:layout_centerHorizontal="true"
-                        android:background="#F1F1F1"
-                        android:hint="Your name"
-                        android:inputType="text"
-                        android:padding="5dp" />
+            <EditText
+                android:id="@+id/partner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="85dp"
+                android:layout_toRightOf="@+id/your_name"
+                android:background="@drawable/blank_circle"
+                android:hint="Partner's name"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/partner_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:layout_marginLeft="15dp"
-                        android:background="#F1F1F1"
-                        android:hint="Partner's name"
-                        android:inputType="text"
-                        android:padding="5dp" />
-                </TableRow>
-
-            </TableLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="7dp"
+                android:layout_toRightOf="@+id/your_name"
+                android:background="#ffffff"
+                android:text="Partner's Name"
+                android:textColor="#9A6B63" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="60dp"
+            <Button
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="0dp">
-
-                <Button
-                    android:id="@+id/register"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:backgroundTint="#FBAD4E"
-                    android:text="Register" />
-            </androidx.cardview.widget.CardView>
+                android:background="@drawable/blank_corner_mid"
+                android:backgroundTint="#FFDBA6"
+                android:text="Register"
+                android:textColor="#424242" />
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

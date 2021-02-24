@@ -109,9 +109,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 image_uri = data.getData();
                 try {
                     image_bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 4, image_bp.getHeight() / 4, false);
+                    image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 10, image_bp.getHeight() / 10, false);
                     profile_img.setImageBitmap(image_bp);
                 } catch (Exception e) {
+
                     Toast.makeText(RegisterActivity.this, "Failed!", Toast.LENGTH_LONG).show();
                 }
             }

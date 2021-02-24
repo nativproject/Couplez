@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(MainActivity.this, SwipeActivity.class));
+                    startActivity(new Intent(MainActivity.this, IntroActivity.class));
                 } else {
                     Toast.makeText(MainActivity.this, "Failed to login! Please try again!", Toast.LENGTH_LONG).show();
                 }
