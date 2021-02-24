@@ -36,7 +36,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.start:
+            case R.id.discover:
                 startActivity(new Intent(this, SwipeActivity.class));
                 break;
             case R.id.chat:

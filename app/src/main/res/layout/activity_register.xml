@@ -16,27 +16,26 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_alignParentBottom="true"
+                android:layout_height="60dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/logo" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="110dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="#FFFFFF"
                 app:cardElevation="0dp">
 
                 <ImageView
@@ -46,6 +45,7 @@
                     android:layout_marginHorizontal="-60dp"
                     android:layout_marginVertical="-60dp"
                     android:rotation="180"
+                    android:padding="15dp"
                     android:src="@drawable/profile" />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
@@ -108,11 +108,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="14dp"
                 android:background="#ffffff"
+
                 android:text="Your Age"
-                android:textColor="#9A6B63" />
+                android:textColor="#9A6B63"
+                android:textSize="9sp" />
 
             <EditText
                 android:id="@+id/partner_age"
@@ -133,11 +135,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="110dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="14dp"
                 android:layout_toRightOf="@+id/your_age"
                 android:background="#ffffff"
                 android:text="Partner's Age"
-                android:textColor="#9A6B63" />
+                android:textColor="#9A6B63"
+                android:textSize="9sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -162,10 +165,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="14dp"
                 android:background="#ffffff"
                 android:text="Your Name"
-                android:textColor="#9A6B63" />
+                android:textColor="#9A6B63"
+                android:textSize="9sp" />
 
             <EditText
                 android:id="@+id/partner_name"
@@ -185,11 +189,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="14dp"
                 android:layout_toRightOf="@+id/your_name"
                 android:background="#ffffff"
                 android:text="Partner's Name"
-                android:textColor="#9A6B63" />
+                android:textColor="#9A6B63"
+                android:textSize="9sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/about"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/about"
+                android:gravity="start"
+                android:hint="About"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textAlignment="gravity"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:background="#ffffff"
+                android:text="About"
+                android:textColor="#9A6B63"
+                android:textSize="10sp" />
         </RelativeLayout>
 
         <RelativeLayout

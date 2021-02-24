@@ -2,17 +2,12 @@ package com.example.couplez;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -40,7 +35,7 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText edit_email, edit_password, edit_your_name, edit_your_age, edit_partner_age, edit_partner_name;
+    private EditText edit_email, edit_password, edit_your_name, edit_your_age, edit_partner_age, edit_partner_name, edit_about;
     private Button register;
     private FirebaseAuth m_auth;
     private ProgressBar progress_bar;
@@ -49,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Uri image_uri;
     private Bitmap image_bp;
     private HashMap<String, String> ages = new HashMap<>(), names = new HashMap<>();
-    private String email, password, profile_image, info;
+    private String email, password, profile_image, about;
     private boolean img_uploaded = false;
 
     @Override
@@ -70,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edit_partner_age = (EditText) findViewById(R.id.partner_age);
         edit_partner_name = (EditText) findViewById(R.id.partner_name);
         edit_password = (EditText) findViewById(R.id.password);
+        edit_about = (EditText) findViewById(R.id.about);
         register = (Button) findViewById(R.id.register);
         progress_bar = (ProgressBar) findViewById(R.id.register_progress_bar);
         profile_img = (ImageView) findViewById(R.id.profile_img);
@@ -109,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 image_uri = data.getData();
                 try {
                     image_bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
-                    image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 10, image_bp.getHeight() / 10, false);
+                    image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 4, image_bp.getHeight() / 4, false);
                     profile_img.setImageBitmap(image_bp);
                 } catch (Exception e) {
 
@@ -153,11 +149,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void register_user() {
         email = edit_email.getText().toString().trim();
         password = edit_password.getText().toString().trim();
+        about = edit_about.getText().toString().trim();
         ages.put("your_age", edit_your_age.getText().toString().trim());
         ages.put("partner_age", edit_partner_age.getText().toString().trim());
         names.put("your_name", edit_your_name.getText().toString().trim());
         names.put("partner_name", edit_partner_name.getText().toString().trim());
-        info = "Hiking, Traveling, Restaurant";
+//        info = "Hiking, Traveling, Restaurant";
 
         if (names.get("your_name").isEmpty() || names.get("partner_name").isEmpty()) {
             edit_your_name.setError("Full name is required!");
@@ -191,7 +188,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             edit_password.requestFocus();
             return;
         }
-
+        if (about.length() > 60 || about.isEmpty()) {
+            edit_about.setError("About need to be less than 50 characters and cannot remain empty!");
+            edit_about.requestFocus();
+            return;
+        }
         if (!img_uploaded) {
             Toast.makeText(RegisterActivity.this, "Please select your profile picture!", Toast.LENGTH_LONG).show();
             return;
@@ -204,7 +205,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(names, ages, email, profile_image, info);
+                            User user = new User(names, ages, email, profile_image, about);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
