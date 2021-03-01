@@ -158,9 +158,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         names.put("partner_name", edit_partner_name.getText().toString().trim());
 //        info = "Hiking, Traveling, Restaurant";
 
-        if (names.get("your_name").isEmpty() || names.get("partner_name").isEmpty()) {
+        if (names.get("your_name").isEmpty() ) {
             edit_your_name.setError("Full name is required!");
             edit_your_name.requestFocus();
+            return;
+        }
+        if(names.get("partner_name").isEmpty()) {
+            edit_partner_name.setError("Full name is required!");
+            edit_partner_name.requestFocus();
             return;
         }
         if (password.isEmpty()) {
@@ -174,9 +179,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             edit_email.requestFocus();
             return;
         }
-        if (ages.get("your_age").isEmpty() || Integer.parseInt(ages.get("your_age")) < 18 || ages.get("partner_age").isEmpty() || Integer.parseInt(ages.get("partner_age")) < 18) {
+        if (ages.get("your_age").isEmpty() || Integer.parseInt(ages.get("your_age")) < 18) {
             edit_your_age.setError("Please provide a valid age!");
             edit_your_age.requestFocus();
+            return;
+        }
+        if(ages.get("partner_age").isEmpty() || Integer.parseInt(ages.get("partner_age")) < 18) {
+            edit_partner_age.setError("Please provide a valid age!");
+            edit_partner_age.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
