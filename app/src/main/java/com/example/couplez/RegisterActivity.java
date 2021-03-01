@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -107,8 +108,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     image_bp = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
                     image_bp = Bitmap.createScaledBitmap(image_bp, image_bp.getWidth() / 4, image_bp.getHeight() / 4, false);
                     profile_img.setImageBitmap(image_bp);
+                    if (image_bp.getWidth() < image_bp.getHeight())
+                        profile_img.setRotation(90);
                 } catch (Exception e) {
-
                     Toast.makeText(RegisterActivity.this, "Failed!", Toast.LENGTH_LONG).show();
                 }
             }
